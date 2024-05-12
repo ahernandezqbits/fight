@@ -113,22 +113,22 @@ export default function Point() {
                 onClick={() =>
                   handleIncrementPoint(data?.competitor_one, "increment")
                 }
-                className="">
-                +
+                className="text-2xl">
+                + 1
               </Button>
               <Button
                 onClick={() =>
                   handleDecrementPoint(data?.competitor_one, "decrement")
                 }
-                className="">
-                -
+                className="text-2xl">
+                - 1
               </Button>
               <Button
                 color="danger"
                 onClick={() =>
                   handleLackCompetitor(data?.competitor_one, "lack")
                 }
-                className="">
+                className="text-1xl">
                 Falta
               </Button>
             </div>
@@ -152,22 +152,22 @@ export default function Point() {
                 onClick={() =>
                   handleIncrementPoint(data?.competitor_two, "increment")
                 }
-                className="">
-                +
+                className="text-2xl">
+                + 1
               </Button>
               <Button
                 onClick={() =>
                   handleDecrementPoint(data?.competitor_two, "decrement")
                 }
-                className="">
-                -
+                className="text-2xl">
+                - 1
               </Button>
               <Button
                 color="danger"
                 onClick={() =>
                   handleLackCompetitor(data?.competitor_two, "lack")
                 }
-                className="">
+                className="text-1xl">
                 Falta
               </Button>
             </div>
