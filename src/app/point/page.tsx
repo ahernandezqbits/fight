@@ -13,14 +13,21 @@ export default function Point() {
   const [point2, setPoint2] = useState(0);
   const [lack1, setLack1] = useState(0);
   const [lack2, setLack2] = useState(0);
+
+  const [lackbtn1, setLackBtn1] = useState(false);
+  const [lackbtn2, setLackBtn2] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleIncrementPoint = (competitor: any, action: any) => {
     if (action === "increment") {
       if (competitor === data?.competitor_one) {
+        if (lack2 >= 3) setLack2(0);
         setPoint1(point1 + 1);
+        setLackBtn2(false)
       } else {
+        if (lack1 >= 3) setLack1(0);
         setPoint2(point2 + 1);
+        setLackBtn1(false)
       }
     }
   };
@@ -28,9 +35,13 @@ export default function Point() {
   const handleDecrementPoint = (competitor: any, action: any) => {
     if (action === "decrement") {
       if (competitor === data.competitor_one) {
+        if (lack1 >= 3) setLack1(0);
         setPoint1(point1 - 1);
+        setLackBtn1(false)
       } else {
+        if (lack2 >= 3) setLack2(0);
         setPoint2(point2 - 1);
+        setLackBtn2(false)
       }
     }
   };
@@ -38,9 +49,20 @@ export default function Point() {
   const handleLackCompetitor = (competitor: any, action: any) => {
     if (action === "lack") {
       if (competitor === data.competitor_one) {
-        setLack1(lack1 + 1);
+        console.log(lack1)
+        if (lack1 < 3) {
+          setLack1(lack1 + 1);
+          if(lack1 >= 2){
+            setLackBtn1(true)
+          }
+        }
       } else {
-        setLack2(lack2 + 1);
+        if (lack2 < 3) {
+          setLack2(lack2 + 1);
+          if(lack2 >= 2){
+            setLackBtn2(true)
+          }
+        }
       }
     }
   };
@@ -114,22 +136,23 @@ export default function Point() {
                   handleIncrementPoint(data?.competitor_one, "increment")
                 }
                 className="text-2xl">
-                + 1
+                +
               </Button>
               <Button
                 onClick={() =>
                   handleDecrementPoint(data?.competitor_one, "decrement")
                 }
                 className="text-2xl">
-                - 1
+                -
               </Button>
               <Button
+                isDisabled={lackbtn1}
                 color="danger"
                 onClick={() =>
                   handleLackCompetitor(data?.competitor_one, "lack")
                 }
                 className="text-1xl">
-                Falta
+                amonestaciones
               </Button>
             </div>
             <div className="mt-10">
@@ -153,22 +176,23 @@ export default function Point() {
                   handleIncrementPoint(data?.competitor_two, "increment")
                 }
                 className="text-2xl">
-                + 1
+                +
               </Button>
               <Button
                 onClick={() =>
                   handleDecrementPoint(data?.competitor_two, "decrement")
                 }
                 className="text-2xl">
-                - 1
+                -
               </Button>
               <Button
+                isDisabled={lackbtn2}
                 color="danger"
                 onClick={() =>
                   handleLackCompetitor(data?.competitor_two, "lack")
                 }
                 className="text-1xl">
-                Falta
+                amonestaciones
               </Button>
             </div>
             <div className="mt-10">
