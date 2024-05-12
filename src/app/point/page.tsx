@@ -23,11 +23,13 @@ export default function Point() {
       if (competitor === data?.competitor_one) {
         if (lack2 >= 3) setLack2(0);
         setPoint1(point1 + 1);
+        setLackBtn1(false)
         setLackBtn2(false)
       } else {
         if (lack1 >= 3) setLack1(0);
         setPoint2(point2 + 1);
         setLackBtn1(false)
+        setLackBtn2(false)
       }
     }
   };
@@ -38,9 +40,11 @@ export default function Point() {
         if (lack1 >= 3) setLack1(0);
         setPoint1(point1 - 1);
         setLackBtn1(false)
+        setLackBtn2(false)
       } else {
         if (lack2 >= 3) setLack2(0);
         setPoint2(point2 - 1);
+        setLackBtn1(false)
         setLackBtn2(false)
       }
     }
@@ -52,15 +56,17 @@ export default function Point() {
         console.log(lack1)
         if (lack1 < 3) {
           setLack1(lack1 + 1);
-          if(lack1 >= 2){
+          if (lack1 >= 2) {
             setLackBtn1(true)
+            setLackBtn2(true)
           }
         }
       } else {
         if (lack2 < 3) {
           setLack2(lack2 + 1);
-          if(lack2 >= 2){
+          if (lack2 >= 2) {
             setLackBtn2(true)
+            setLackBtn1(true)
           }
         }
       }
